@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <a href="/calculator/add">Addieren</a>
+        <a href="/calculator/sub">Subtrahieren</a>
+        <a href="/calculator/div">Dividieren</a>
+        <a href="/calculator/mul">Multiplizieren</a>
+        <h1>Ich bin ein einfacher Taschenrechner</h1>
+        <form action="/calculator/$calculationPath" method="POST">
+            <label>a</label><input type="text" name="a"/><br/>
+            <label>b</label><input type="text" name="b"/><br/>
+            <button type="submit">$calculationMethod</button>
+            #if($result)
+                <h3>Dein Ergebnis lautet $result </h3>
+            #end
+        </form>
+    </body>
+</html>
