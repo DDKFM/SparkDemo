@@ -1,17 +1,58 @@
 <html>
+    <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
     <body>
-        <a href="/calculator/add">Addieren</a>
-        <a href="/calculator/sub">Subtrahieren</a>
-        <a href="/calculator/div">Dividieren</a>
-        <a href="/calculator/mul">Multiplizieren</a>
-        <h1>Ich bin ein einfacher Taschenrechner</h1>
-        <form action="/calculator/$calculationPath" method="POST">
-            <label>a</label><input type="text" name="a"/><br/>
-            <label>b</label><input type="text" name="b"/><br/>
-            <button type="submit">$calculationMethod</button>
-            #if($result)
-                <h3>Dein Ergebnis lautet $result </h3>
-            #end
-        </form>
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo right"></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li><a href="/calculator/add">Addieren</a></li>
+              <li><a href="/calculator/sub">Subtrahieren</a></li>
+              <li><a href="/calculator/div">Dividieren</a></li>
+              <li><a href="/calculator/mul">Multiplizieren</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+              <h1>Ich bin ein einfacher Taschenrechner</h1>
+            </div>
+            <div class="row">
+                <form action="/calculator/$calculationPath" method="POST">
+                    <div class="col s5">
+                        <label>a</label><input type="text" name="a"/><br/>
+                    </div>
+                    <div class="col s2">
+                      #if($calculationPath == "add")
+                          #set($description = "add")
+                      #elseif($calculationPath == "sub")
+                          #set($description = "remove")
+                      #elseif($calculationPath == "div")
+                          #set($description = "border_horizontal")
+                      #elseif($calculationPath == "mul")
+                          #set($description = "clear")
+                      #end
+                      <button class="btn waves-effect waves-light" type="submit" name="action">$calculationMethod
+                        <i class="material-icons right">$description</i>
+                      </button>
+                    </div>
+                    <div class="col s5">
+                        <label>b</label><input type="text" name="b"/><br/>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                  #if($result)
+                    <h3>Dein Ergebnis lautet $result
+                    </h3>
+                  #end
+              </div>
+            </div>
+        </div>
     </body>
 </html>
